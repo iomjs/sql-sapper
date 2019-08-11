@@ -35,13 +35,6 @@
         </select>
       </div>
       <div class="col">
-        <label>
-          <input type="checkbox" name="base" bind:value={base}/>
-          Base
-        </label>
-        <p class="text-muted">base values will be compared to all other values</p>
-      </div>
-      <div class="col">
         <button class="btn btn-primary">&plus;&nbsp;Add</button>
       </div>
     </div>
@@ -78,9 +71,6 @@
     {#each rows as row, i}
     <tr>
       <td>
-        <input type="checkbox" bind:checked={row.base} on:change={syncRows} />
-      </td>
-      <td>
         {row.name}
       </td>
       <td>
@@ -106,7 +96,7 @@
   import { onMount } from 'svelte';
   import get from 'lodash/get';
   import find from 'lodash/find';
-  let base, price, name, unitcount, unitkey, rows, err;
+  let price, name, unitcount, unitkey, rows, err;
   const lskey = 'uc_rows';
   const units = [
     { key: 'lb', lbMult: 1, },
@@ -122,7 +112,6 @@
       rows = JSON.parse(ls.getItem(lskey));
     } else {
       rows.push({
-        base: true,
         name: 'Chicken Breast',
         unitcount: 1,
         price: 1.99,
@@ -131,7 +120,6 @@
       });
 
       // rows.push({
-      //   base: false,
       //   name: 'Chicken Breast',
       //   unitcount: 32,
       //   price: 1.99,
@@ -140,7 +128,6 @@
       // });
 
       // rows.push({
-      //   base: false,
       //   name: 'Chicken Breast',
       //   unitcount: 32,
       //   price: 8.99,
@@ -149,7 +136,6 @@
       // });
 
       // rows.push({
-      //   base: false,
       //   name: 'Tofu',
       //   unitcount: 32,
       //   price: 8.99,
@@ -172,7 +158,6 @@
   }
 
   function reset() {
-    base = false,
     unitcount = '';
     name = '';
     price = '';
@@ -198,7 +183,6 @@
     }
     err = null;
     const row = {
-      base,
       name,
       unitcount: parseFloat(unitcount),
       price: parseFloat(price),
