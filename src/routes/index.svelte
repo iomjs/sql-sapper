@@ -166,7 +166,9 @@
     unitcount = '';
     name = '';
     price = '';
-    unitkey = 'lb';
+    // the default is oz, because the premise of this app
+    // is that chicken is sold in lbs but tofu is sold in oz
+    unitkey = 'oz';
   }
 
   function syncRows () {
