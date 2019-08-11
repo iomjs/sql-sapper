@@ -1,0 +1,227 @@
+<style>
+
+</style>
+
+<svelte:head>
+  <title>Sapper Unit Compare</title>
+</svelte:head>
+
+<!-- <h1>Unit Compare</h1> -->
+
+<div class="container">
+  <form on:submit|preventDefault={addRow}>
+    <div class="row">
+      <div class="col">
+        <label>Name</label>
+        <input type="text" name="name" bind:value={name}/>
+      </div>
+      <div class="col">
+        <label>Price</label>
+        <input type="text" name="price" bind:value={price}/>
+      </div>
+      <div class="col">
+        <label>Unit Count</label>
+        <input type="text" name="unitcount" bind:value={unitcount}/>
+      </div>
+      <div class="col">
+        <label>Unit</label>
+        &nbsp;
+        <select bind:value={unitkey} on:change="{getTargetValue}">
+          {#each units as unit}
+            <option value={unit.key}>
+              {unit.key}
+            </option>
+          {/each}
+        </select>
+      </div>
+      <div class="col">
+        <label>
+          <input type="checkbox" name="base" bind:value={base}/>
+          Base
+        </label>
+        <p class="text-muted">base values will be compared to all other values</p>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary">&plus;&nbsp;Add</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{#if err}
+<div class="alert alert-danger">{err}</div>
+{/if}
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <td>
+        <small>Base</small>
+      </td>
+      <td>
+        Item
+      </td>
+      <td>
+        Price
+      </td>
+      <td>
+        per Unit
+      </td>
+      <td>
+        per LB
+      </td>
+      <td>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    {#each rows as row, i}
+    <tr>
+      <td>
+        <input type="checkbox" bind:checked={row.base} on:change={syncRows} />
+      </td>
+      <td>
+        {row.name}
+      </td>
+      <td>
+        ${row.price}
+        <span class="text-muted">for</span>
+        {row.unitcount} {row.unitkey}
+      </td>
+      <td>
+        ${toUnitPrice(row)}
+      </td>
+      <td>
+        ${toUnitPriceInLbs(row)}
+      </td>
+      <td>
+        <button class="btn btn-danger btn-sm" on:click="{() => delRow(row)}">&times;</button>
+      </td>
+    </tr>
+    {/each}
+  </tbody>
+</table>
+
+<script>
+  import { onMount } from 'svelte';
+  import get from 'lodash/get';
+  import find from 'lodash/find';
+  let base, price, name, unitcount, unitkey, rows, err;
+  const lskey = 'uc_rows';
+  const units = [
+    { key: 'lb', lbMult: 1, },
+    { key: 'oz', lbMult: (1/16), },
+  ];
+  const ls = typeof window !== 'undefined' ? window.localStorage : null;
+  rows = [];
+
+  onMount(() => {
+    if (!process.browser) {
+      // do nothing
+    } else if (ls && window.localStorage.getItem(lskey)) {
+      rows = JSON.parse(ls.getItem(lskey));
+    } else {
+      rows.push({
+        base: true,
+        name: 'Chicken Breast',
+        unitcount: 1,
+        price: 1.99,
+        unitkey: 'lb',
+        createdAt: Date.now(),
+      });
+
+      // rows.push({
+      //   base: false,
+      //   name: 'Chicken Breast',
+      //   unitcount: 32,
+      //   price: 1.99,
+      //   unitkey: 'lb',
+      //   createdAt: Date.now(),
+      // });
+
+      // rows.push({
+      //   base: false,
+      //   name: 'Chicken Breast',
+      //   unitcount: 32,
+      //   price: 8.99,
+      //   unitkey: 'lb',
+      //   createdAt: Date.now(),
+      // });
+
+      // rows.push({
+      //   base: false,
+      //   name: 'Tofu',
+      //   unitcount: 32,
+      //   price: 8.99,
+      //   unitkey: 'oz',
+      //   createdAt: Date.now(),
+      // });
+    }
+  });
+
+  function toUnitPrice(row) {
+    return row.price / row.unitcount;
+  }
+
+  function toUnitPriceInLbs(row) {
+    const unit = find(units, u => row.unitkey === u.key);
+    if (!unit) {
+      return 'N/A';
+    }
+    return toUnitPrice(row) / unit.lbMult;
+  }
+
+  function reset() {
+    base = false,
+    unitcount = '';
+    name = '';
+    price = '';
+    unitkey = 'lb';
+  }
+
+  function syncRows () {
+    rows = rows;
+    if (ls) {
+      ls.setItem(lskey, JSON.stringify(rows));
+    }
+  }
+
+  function addRow() {
+    console.log('addRow');
+    if (!(name && price && unitkey && unitcount)) {
+      err = 'all values required';
+      return;
+    }
+    if (!(isValidNumber(price) && isValidNumber(unitcount))) {
+      err = 'price and unitcount must be valid numbers';
+      return;
+    }
+    err = null;
+    const row = {
+      base,
+      name,
+      unitcount: parseFloat(unitcount),
+      price: parseFloat(price),
+      unitkey,
+      createdAt: Date.now(),
+    };
+    rows.push(row);
+    syncRows();
+    reset();
+  }
+  function delRow(row) {
+    const index = rows.indexOf(row);
+    if (index >= 0) {
+      rows.splice(index, 1);
+      syncRows();
+    }
+  }
+  function getTargetValue($event) {
+    return get($event, 'target.value') || '';
+  }
+  function isValidNumber(value) {
+    return !isNaN(parseFloat(value));
+  }
+
+  reset();
+</script>
