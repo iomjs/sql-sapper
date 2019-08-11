@@ -106,11 +106,11 @@
   rows = [];
 
   onMount(() => {
-    if (!process.browser) {
-      // do nothing
-    } else if (ls && window.localStorage.getItem(lskey)) {
+    console.log('onMount');
+    if (ls && window.localStorage.getItem(lskey)) {
       rows = JSON.parse(ls.getItem(lskey));
-    } else {
+    }
+    if (rows && rows.length === 0) {
       rows.push({
         name: 'Chicken Breast',
         unitcount: 1,
