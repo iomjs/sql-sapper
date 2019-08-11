@@ -79,10 +79,10 @@
         {row.unitcount} {row.unitkey}
       </td>
       <td class="text-right">
-        ${toUnitPrice(row).toFixed(3)}
+        ${toUnitPriceFixed(row)}
       </td>
       <td class="text-right">
-        ${toUnitPriceInLbs(row).toFixed(3)}
+        ${toUnitPriceInLbsFixed(row)}
       </td>
       <td class="text-center">
         <button class="btn btn-danger btn-sm" on:click="{() => delRow(row)}">&times;</button>
@@ -98,6 +98,7 @@
   import find from 'lodash/find';
   let price, name, unitcount, unitkey, rows, err;
   const lskey = 'uc_rows';
+  const FIXED = 3;
   const units = [
     { key: 'lb', lbMult: 1, },
     { key: 'oz', lbMult: (1/16), },
@@ -149,12 +150,16 @@
     return row.price / row.unitcount;
   }
 
-  function toUnitPriceInLbs(row) {
+  function toUnitPriceFixed(row) {
+    return toUnitPrice(row).toFixed(FIXED);
+  }
+
+  function toUnitPriceInLbsFixed(row) {
     const unit = find(units, u => row.unitkey === u.key);
     if (!unit) {
       return 'N/A';
     }
-    return toUnitPrice(row) / unit.lbMult;
+    return (toUnitPrice(row) / unit.lbMult).toFixed(FIXED);
   }
 
   function reset() {
