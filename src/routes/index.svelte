@@ -52,18 +52,15 @@
   <thead>
     <tr>
       <td>
-        <small>Base</small>
-      </td>
-      <td>
         Item
       </td>
       <td>
         Price
       </td>
-      <td>
+      <td class="text-right">
         per Unit
       </td>
-      <td>
+      <td class="text-right">
         per LB
       </td>
       <td>
@@ -81,13 +78,13 @@
         <span class="text-muted">for</span>
         {row.unitcount} {row.unitkey}
       </td>
-      <td>
-        ${toUnitPrice(row)}
+      <td class="text-right">
+        ${toUnitPrice(row).toFixed(3)}
       </td>
-      <td>
-        ${toUnitPriceInLbs(row)}
+      <td class="text-right">
+        ${toUnitPriceInLbs(row).toFixed(3)}
       </td>
-      <td>
+      <td class="text-center">
         <button class="btn btn-danger btn-sm" on:click="{() => delRow(row)}">&times;</button>
       </td>
     </tr>
