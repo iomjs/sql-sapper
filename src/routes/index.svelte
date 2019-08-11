@@ -6,7 +6,8 @@
   <title>Sapper Unit Compare</title>
 </svelte:head>
 
-<!-- <h1>Unit Compare</h1> -->
+<h2 class="text-center">Unit Compare</h2>
+<br />
 
 <div class="container">
   <form on:submit|preventDefault={addRow}>
@@ -44,6 +45,8 @@
 {#if err}
 <div class="alert alert-danger">{err}</div>
 {/if}
+
+<br />
 
 <table class="table table-sm">
   <thead>
