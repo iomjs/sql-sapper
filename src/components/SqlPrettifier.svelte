@@ -87,7 +87,7 @@
 <script>
   import sqlFormatter from 'sql-formatter'
   import pick from 'lodash/pick'
-  import AceEditor from '~/components/AceEditor.svelte';
+  import AceEditor from 'svelte-ace-editor';
 
   if (process.browser) {
     require('brace');

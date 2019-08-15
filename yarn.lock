@@ -2367,6 +2367,12 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
+svelte-ace-editor@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/svelte-ace-editor/-/svelte-ace-editor-0.0.1.tgz#8c59a721b1e5a9f57d3c36abfa1217e2ab258c7d"
+  dependencies:
+    brace "^0.11.1"
+
 svelte-dev-helper@^1.1.9:
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/svelte-dev-helper/-/svelte-dev-helper-1.1.9.tgz#7d187db5c6cdbbd64d75a32f91b8998bde3273c3"
