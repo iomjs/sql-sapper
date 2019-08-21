@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ac2csyt1l3so8ykf?svg=true)](https://ci.appveyor.com/project/InstanceOfMichael/sql-sapper)
+
 # sapper-template
 
 The default [Sapper](https://github.com/sveltejs/sapper) template, with branches for Rollup and webpack. To clone it and get started:
