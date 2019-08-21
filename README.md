@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/ac2csyt1l3so8ykf?svg=true)](https://ci.appveyor.com/project/InstanceOfMichael/sql-sapper)
+[![Build status](https://ci.appveyor.com/api/projects/status/ac2csyt1l3so8ykf?svg=true)](https://ci.appveyor.com/project/InstanceOfMichael/sql-sapper) [![Greenkeeper badge](https://badges.greenkeeper.io/greatenemy/sql-sapper.svg)](https://greenkeeper.io/)
 
 # sapper-template
 
