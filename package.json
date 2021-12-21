@@ -16,6 +16,7 @@
     "compression": "^1.7.1",
     "lodash": "^4.17.15",
     "polka": "next",
+    "prettier-sql": "^5.0.1",
     "sirv": "^0.4.0",
     "sql-formatter": "^2.3.3",
     "svelte-ace-editor": "^0.0.2"
