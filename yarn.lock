@@ -210,6 +210,11 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
+
 arr-diff@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/arr-diff/-/arr-diff-4.0.0.tgz#d6461074febfec71e7e15235761a329a5dc7c520"
@@ -1368,9 +1373,14 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash@^4.16.0, lodash@^4.17.15:
+lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+
+lodash@^4.17.20:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 lower-case@^1.1.1:
   version "1.1.4"
@@ -1878,6 +1888,13 @@ posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
 
+prettier-sql@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/prettier-sql/-/prettier-sql-5.0.1.tgz#6434953e7e20c279a6fe2abce64a7f7488fcc7c9"
+  integrity sha512-bjcOltr044ktVM4UUr7Vi0V4wJlk1Uke9ONS8VU6ekee/2GsDw8EpYmOjZjPqGzO0tsthj8QizzmiLmn3GnJFA==
+  dependencies:
+    argparse "^2.0.1"
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -2256,10 +2273,11 @@ split-string@^3.0.1, split-string@^3.0.2:
     extend-shallow "^3.0.0"
 
 sql-formatter@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/sql-formatter/-/sql-formatter-2.3.3.tgz#910ef484fbb988a5e510bea4161157e3b80b2f62"
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/sql-formatter/-/sql-formatter-2.3.4.tgz#85ff9a946d8157e3917c0b1db514ca8184a1b6f1"
+  integrity sha512-CajWtvzYoBJbD5PQeVe3E7AOHAIYvRQEPOKgF9kfKNeY8jtjBiiA6pDzkMuAID8jJMluoPvyKveLigSaA5tKQQ==
   dependencies:
-    lodash "^4.16.0"
+    lodash "^4.17.20"
 
 ssri@^6.0.1:
   version "6.0.1"
